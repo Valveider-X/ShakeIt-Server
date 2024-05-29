@@ -8,14 +8,23 @@ const userSchema = new Schema(
       required: [true, 'Email is required.'],
       unique: true,
       lowercase: true,
-      trim: true
+      trim: true //! buscar que es trim
     },
     password: {
       type: String,
       required: [true, 'Password is required.']
+    },
+    username: {
+      type: String,
+      required: [true, "Username is required."]
+    },
+    role:{
+      type: String,
+      enum: ["user", "admin"],
+      default: "user"
     }
   },
-  {
+  { //! mirar si me puede servir o lo borramos
     // this second object adds extra properties: `createdAt` and `updatedAt`    
     timestamps: true
   }
@@ -24,3 +33,7 @@ const userSchema = new Schema(
 const User = model("User", userSchema);
 
 module.exports = User;
+
+//Crear models para Cocktails
+//user, en esta página.
+//crear models para comentarios
