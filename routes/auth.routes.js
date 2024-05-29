@@ -3,6 +3,7 @@ const router = require("express").Router()
 const bcrypt =require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { isTokenValid } = require("../middlewares/auth.middlewares")
+const cors = require("cors")
 
 //AUTH ROUTES
 
