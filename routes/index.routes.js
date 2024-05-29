@@ -7,4 +7,7 @@ router.get("/", (req, res, next) => {
 const authRouter = require("./auth.routes")
 router.use("/auth", authRouter)
 
+const shakeitRouter = require ("./shakeit.routes")
+router.use("/", shakeitRouter)
+
 module.exports = router;

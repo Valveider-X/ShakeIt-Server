@@ -91,5 +91,9 @@ router.get("/verify", isTokenValid, (req, res, next)=>{
 
 //! hay que hacer:
 //rutas para usuarios logueados(private)
+router.get("/profile", isTokenValid, (req, res)=>{
+    res.json({data: "info only for loged users"})
+    console.log(req.payload) //! console.log
+})
 
 module.exports = router;

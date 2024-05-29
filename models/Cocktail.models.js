@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const cocktailDefault = ""
 
 
 const CocktailSchema = new Schema(
@@ -23,17 +22,17 @@ const CocktailSchema = new Schema(
       type: String,
     },
     ingredients:{
-      type: String,
-      enum: ["user", "admin"],
-      default: "user"
+      type: Schema.Types.ObjectId,
+      ref: "Ingredient"
     },
     steps:{
-        type: [String],
+        type: String,
         required: [true, 'Steps are needed.']
         
       },
       owner:{
-        id: "string"
+        type: Schema.Types.ObjectId,
+        ref: "User"
       }
   },
   { //! mirar si me puede servir o lo borramos
@@ -42,11 +41,6 @@ const CocktailSchema = new Schema(
   }
 );
 
-const User = model("User", userSchema);
+const Cocktail = model("Cocktail", CocktailSchema);
 
-module.exports = User;
-
-
-//Crear models para Cocktails
-//user, en esta página.
-//crear models para comentarios
+module.exports = Cocktail;
