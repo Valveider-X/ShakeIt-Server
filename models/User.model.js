@@ -22,6 +22,11 @@ const userSchema = new Schema(
       type: String,
       enum: ["user", "admin"],
       default: "user"
+    },
+    favorites: {
+      type: [Schema.Types.ObjectId
+      ],
+      ref: "Cocktail"
     }
   },
   { //! mirar si me puede servir o lo borramos

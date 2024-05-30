@@ -15,16 +15,16 @@ const CocktailSchema = new Schema(
     },
     img: {
         type: String,
-        default: "https://ehristoforu-dalle-3-xl-lora-v2.hf.space/file=/tmp/gradio/d98454b53a165d6b481d1c9157cb54b6dc2ad244/f1ffaf48-c46d-4e82-8d5e-fbb3f700881b.png"
+        default: "https://soberatx.com/wp-content/uploads/2024/01/Drinks-Alternatives-to-Alcohol.webp"
         // desde el frontend empezando por ruta public
     },
     description: {
       type: String,
     },
-    ingredients:{
+    ingredients:[{
       type: Schema.Types.ObjectId,
       ref: "Ingredient"
-    },
+    }],
     steps:{
         type: String,
         required: [true, 'Steps are needed.']
