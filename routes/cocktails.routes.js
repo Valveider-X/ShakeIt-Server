@@ -39,7 +39,8 @@ router.post("/",  isTokenValid,  async (req, res, next) => {
         description: req.body.description,
         ingredients:req.body.ingredients,
         steps:req.body.steps,
-        owner:req.payload._id,
+        owner: req.payload._id
+      
     })
   .then(()=>{
     res.sendStatus(201)
@@ -51,7 +52,7 @@ router.post("/",  isTokenValid,  async (req, res, next) => {
 });
 
 // PUT "/api/cocktails/:cocktailId"  //!OK
-router.put("/:cocktailId", async (req, res, next) => {
+router.put("/:cocktailId", isTokenValid, async (req, res, next) => {
   try {
     await Cocktail.findByIdAndUpdate(req.params.cocktailId, {
         name: req.body.name,
@@ -60,7 +61,6 @@ router.put("/:cocktailId", async (req, res, next) => {
         description: req.body.description,
         ingredients: req.body.ingredients,
         steps: req.body.steps,
-        owner: req.body.owner
     });
     res.sendStatus(201);
   } catch (error) {
@@ -68,8 +68,8 @@ router.put("/:cocktailId", async (req, res, next) => {
   }
 });
 
-// DELETE "/api/cocktails/:cocktailId" //!OK
-router.delete("/:cocktailId", async (req, res, next) => {
+// DELETE "/api/cocktails/:cocktailId" (falta borrar por id) //!OK
+router.delete("/:cocktailId", isTokenValid, async (req, res, next) => {
   try {
     await Cocktail.findByIdAndDelete(req.params.cocktailId);
     res.status(204).json({ message: "Cocktail deleted" });

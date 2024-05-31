@@ -6,7 +6,7 @@ const CocktailSchema = new Schema(
     name: {
       type: String,
       required: [true, 'Name is required.'],
-      trim: true //! buscar que es trim
+      trim: true
     },
     category: {
       type: String,
@@ -16,15 +16,15 @@ const CocktailSchema = new Schema(
     img: {
         type: String,
         default: "https://soberatx.com/wp-content/uploads/2024/01/Drinks-Alternatives-to-Alcohol.webp"
-        // desde el frontend empezando por ruta public
+        
     },
     description: {
       type: String,
     },
-    ingredients:[{
-      type: Schema.Types.ObjectId,
+    ingredients:{
+      type: [Schema.Types.ObjectId],
       ref: "Ingredient"
-    }],
+    },
     steps:{
         type: String,
         required: [true, 'Steps are needed.']

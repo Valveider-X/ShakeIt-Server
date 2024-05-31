@@ -8,7 +8,7 @@ const userSchema = new Schema(
       required: [true, 'Email is required.'],
       unique: true,
       lowercase: true,
-      trim: true //! buscar que es trim
+      trim: true 
     },
     password: {
       type: String,
@@ -29,8 +29,7 @@ const userSchema = new Schema(
       ref: "Cocktail"
     }
   },
-  { //! mirar si me puede servir o lo borramos
-    // this second object adds extra properties: `createdAt` and `updatedAt`    
+  { 
     timestamps: true
   }
 );
@@ -38,7 +37,3 @@ const userSchema = new Schema(
 const User = model("User", userSchema);
 
 module.exports = User;
-
-//Crear models para Cocktails
-//user, en esta página.
-//crear models para comentarios

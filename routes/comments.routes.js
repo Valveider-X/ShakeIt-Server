@@ -26,10 +26,8 @@ router.get("/", async (req, res, next) => {
        .populate("user")
        .populate("cocktail") 
        res.status(200).json(response);
-       if (!comment) {
-         return res.status(404).json({ message: "Comment not found" });
-       }
-       res.json(comment);
+       
+      
      } catch (error) {
        next(error);
      }
