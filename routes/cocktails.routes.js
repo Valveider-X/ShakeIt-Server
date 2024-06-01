@@ -1,54 +1,49 @@
 const router = require("express").Router();
 const Cocktail = require("../models/Cocktail.models");
 const { isTokenValid } = require("../middlewares/auth.middlewares");
-isTokenValid
+
 
 // GET "/api/cocktails"  //!OK
 router.get("/", async (req, res, next) => {
-    await Cocktail.find()
-    .populate("owner")
-    .populate("ingredients")
-    .then((cocktails)=>{
-    res.status(200).json(cocktails);
+try {
+  const cocktails = await Cocktail.find()
+  res.status(200).json(cocktails);
+} catch (error) {
+  next(error) 
+}    
 })
-.catch((error) =>{
-    next(error)
-})
-});
+
 
 // GET "/api/cocktails/:cocktailId" //!OK
 router.get("/:cocktailId", async (req, res, next) => {
   try {
     const cocktail = await Cocktail.findById(req.params.cocktailId)
-    .populate("owner")
-    .populate("ingredients") 
+    .populate({path: "owner", select: "username"})
+   .populate({path: "ingredients", select:"name"})  
     res.status(200).json(cocktail);
-    if (!cocktail) {
-        return res.status(404).json({ message: "Cocktail not found" })
-    }
+    
   } catch (error) {
     next(error);
   }
 });
 // POST "/api/cocktails" //!OK
 router.post("/",  isTokenValid,  async (req, res, next) => {
-    Cocktail.create({
-        name: req.body.name,
-        category: req.body.category,
-        img: req.body.img,
-        description: req.body.description,
-        ingredients:req.body.ingredients,
-        steps:req.body.steps,
-        owner: req.payload._id
-      
-    })
-  .then(()=>{
-    res.sendStatus(201)
+  try {
+    
+    await Cocktail.create({
+      name: req.body.name,
+      category: req.body.category,
+      img: req.body.img,
+      description: req.body.description,
+      ingredients:req.body.ingredients,
+      steps:req.body.steps,
+      owner: req.payload._id
+    
   })
-  .catch ((error)=>{
-    next(error);
-})
-
+  res.sendStatus(201)
+  } catch (error) {
+    next(error) 
+  }
 });
 
 // PUT "/api/cocktails/:cocktailId"  //!OK

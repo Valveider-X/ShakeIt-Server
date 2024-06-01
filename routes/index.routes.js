@@ -19,6 +19,8 @@ router.use("/cocktails", cocktailsRouter)
 const commentsRouter = require ("./comments.routes")
 router.use("/comments", commentsRouter)
 
+const favRouter = require("./fav.routes")
+router.use("/user", favRouter) 
 
 module.exports = router;
 

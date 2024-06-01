@@ -35,8 +35,7 @@ const CocktailSchema = new Schema(
         ref: "User"
       }
   },
-  { //! mirar si me puede servir o lo borramos
-    // this second object adds extra properties: `createdAt` and `updatedAt`    
+  { 
     timestamps: true
   }
 );
