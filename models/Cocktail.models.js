@@ -13,9 +13,9 @@ const CocktailSchema = new Schema(
       required: [true, 'Category is required.'],
       enum: ["Classic Cocktails", "Highballs", "Seasonal Cocktails", "Dessert Cocktails", "Mocktails", "Fizz Cocktails", "Tiki Cocktails", "Bitter Cocktails", "Punches", "Aged Cocktails", "Coffee Cocktails", "Sour Cocktails", "Infused Cocktails", "Modern Classics", "Egg White Cocktails", "Crushed Ice Cocktails",  "Sweet and Sour Cocktails", "Fresh Herb Cocktails", "Spiced Cocktails", "Smoked Cocktails"]
     },
-    img: {
-        type: String,
-        default: "https://soberatx.com/wp-content/uploads/2024/01/Drinks-Alternatives-to-Alcohol.webp"
+    imageUrl: {
+        type: String
+         
         
     },
     description: {

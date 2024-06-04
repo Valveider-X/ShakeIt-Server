@@ -28,12 +28,13 @@ router.get("/:cocktailId", async (req, res, next) => {
 });
 // POST "/api/cocktails" //!OK
 router.post("/",  isTokenValid,  async (req, res, next) => {
+  console.log(req.body)
   try {
     
     await Cocktail.create({
       name: req.body.name,
       category: req.body.category,
-      //img: req.body.img,
+      imageUrl: req.body.imageUrl,
       description: req.body.description,
       ingredients:req.body.ingredients,
       steps:req.body.steps,

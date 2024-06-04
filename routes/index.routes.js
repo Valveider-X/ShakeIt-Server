@@ -22,5 +22,8 @@ router.use("/comments", commentsRouter)
 const favRouter = require("./fav.routes")
 router.use("/user", favRouter) 
 
+const uploadRoutes = require("./upload.routes");
+router.use("/upload", uploadRoutes);
+
 module.exports = router;
 
