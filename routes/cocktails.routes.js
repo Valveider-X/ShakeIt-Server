@@ -19,7 +19,7 @@ router.get("/:cocktailId", async (req, res, next) => {
   try {
     const cocktail = await Cocktail.findById(req.params.cocktailId)
     .populate({path: "owner", select: "username"})
-   .populate({path: "ingredients", select:"name"})  
+   .populate({path: "ingredients", select:"name hasAlcohol alcoholGraduation description "})  
     res.status(200).json(cocktail);
     
   } catch (error) {
@@ -33,7 +33,7 @@ router.post("/",  isTokenValid,  async (req, res, next) => {
     await Cocktail.create({
       name: req.body.name,
       category: req.body.category,
-      img: req.body.img,
+      //img: req.body.img,
       description: req.body.description,
       ingredients:req.body.ingredients,
       steps:req.body.steps,
