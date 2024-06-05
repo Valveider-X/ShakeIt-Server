@@ -91,9 +91,17 @@ router.get("/verify", isTokenValid, (req, res, next)=>{
 
 //! hay que hacer:
 //rutas para usuarios logueados(private)
-router.get("/profile", isTokenValid, (req, res)=>{
-    res.json({data: "info only for loged users"})
+router.get("/profile", isTokenValid, async(req, res)=>{
+    try {
+    const response = await User.findById(req.payload._id)
+    .populate({path:"favorites", select:"name"})
+    res.status(200).json(response)
+    
     console.log(req.payload) //! console.log
+        
+    } catch (error) {
+    }
+        
 })
 
 module.exports = router;
