@@ -16,23 +16,23 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// GET "/api/comments/commentId" // !OK
-router.get("/:commentId", async (req, res, next) => {
+// GET "/api/comments/:cocktailId" // !OK //Ir a comentarios, coger la id del cocktail del comentario y devolver todos los comentarios de ese coctel
+router.get("/:cocktailId", async (req, res, next) => {
   try {
-    const response = await Comment.findById(req.params.commentId)
+    const response = await Comment.find({cocktail: req.params.cocktailId})
       .populate("user")
-      .populate("cocktail");
     res.status(200).json(response);
   } catch (error) {
     next(error);
   }
 });
 
+
 // POST "/api/comments" // !OK
 router.post("/", isTokenValid, async (req, res, next) => {
   try {
       await Comment.create({
-      user: req.body.user,
+      user: req.payload.id,
       cocktail: req.body.cocktail,
       description: req.body.description,
     });

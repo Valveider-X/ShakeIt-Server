@@ -26,6 +26,7 @@ isTokenValid
      }else{
       await User.findByIdAndUpdate(req.payload._id, {$pull: {favorites: req.params.cocktailId}})
      }
+     //corazon que cuando le des click te rediriga a tu perfil con tus favoritos.
   
      res.json({message: "Updated favorite Cocktails"})
       

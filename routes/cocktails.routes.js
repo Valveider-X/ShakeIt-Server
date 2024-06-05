@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Cocktail = require("../models/Cocktail.models");
+const Comment = require("../models/Comment.model")
 const { isTokenValid } = require("../middlewares/auth.middlewares");
 
 
@@ -16,10 +17,12 @@ try {
 
 // GET "/api/cocktails/:cocktailId" //!OK
 router.get("/:cocktailId", async (req, res, next) => {
+  console.log(`detalle de coctel`);
   try {
     const cocktail = await Cocktail.findById(req.params.cocktailId)
     .populate({path: "owner", select: "username"})
    .populate({path: "ingredients", select:"name hasAlcohol alcoholGraduation description "})  
+  
     res.status(200).json(cocktail);
     
   } catch (error) {

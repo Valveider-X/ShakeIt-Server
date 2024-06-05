@@ -33,6 +33,11 @@ const CocktailSchema = new Schema(
       owner:{
         type: Schema.Types.ObjectId,
         ref: "User"
+      },
+      comments:{
+        type: [Schema.Types.ObjectId],
+        ref: "Comment"
+
       }
   },
   { 
