@@ -14,13 +14,13 @@ router.get("/", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
+});//! Es posible que esto no se use.
 
 // GET "/api/comments/:cocktailId" // !OK //Ir a comentarios, coger la id del cocktail del comentario y devolver todos los comentarios de ese coctel
 router.get("/:cocktailId", async (req, res, next) => {
   try {
     const response = await Comment.find({cocktail: req.params.cocktailId})
-      .populate("user")
+      .populate({path:"user", select:"username"})
     res.status(200).json(response);
   } catch (error) {
     next(error);
@@ -32,7 +32,7 @@ router.get("/:cocktailId", async (req, res, next) => {
 router.post("/", isTokenValid, async (req, res, next) => {
   try {
       await Comment.create({
-      user: req.payload.id,
+      user: req.payload._id,
       cocktail: req.body.cocktail,
       description: req.body.description,
     });
